@@ -1,23 +1,23 @@
 package sort;
 
 import contracts.Contract;
+import repository.Repository;
 
 import java.util.Comparator;
 
-public class BubbleSort implements ISorter {
+public class BubbleSorter implements ISorter {
     @Override
-    // если -1 то a < b
-    public Contract[] sort(Contract[] contracts, Comparator<Contract> comp) {
-        for (int i = 0; i < contracts.length; i++) {
-            for (int j = 1; j < (contracts.length - i); j++) {
+    @SuppressWarnings("unchecked")
+    public Repository sort(Contract[] contracts, Comparator<Contract> comp) {
+        for (int i = 0; i < Repository.getCurrentIndex(); i++) {
+            for (int j = 1; j < (Repository.getCurrentIndex() - i); j++) {
                 if (comp.compare(contracts[j - 1], contracts[j]) > 0) {
                     var temp = contracts[j - 1];
                     contracts[j - 1] = contracts[j];
                     contracts[j] = temp;
                 }
-
             }
         }
-        return contracts;
+        return new Repository(contracts);
     }
 }

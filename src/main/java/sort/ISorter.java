@@ -1,5 +1,10 @@
-package test;
+package sort;
+
+import contracts.Contract;
+import repository.Repository;
+
+import java.util.Comparator;
 
 public interface ISorter {
-    public void
+    Repository sort(Contract[] contracts, Comparator<Contract> comp);
 }

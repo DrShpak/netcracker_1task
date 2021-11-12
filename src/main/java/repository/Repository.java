@@ -2,10 +2,14 @@ package repository;
 
 import contracts.Contract;
 import lombok.Getter;
+import sort.BubbleSorter;
+import sort.InsertionSorter;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.NoSuchElementException;
 import java.util.UUID;
+import java.util.function.Predicate;
 
 public class Repository {
 
@@ -16,12 +20,16 @@ public class Repository {
 
 
     private Contract[] storedContracts;
-    private int currentIndex;
+    @Getter //like a length
+    private static int currentIndex;
 
     public Repository() {
         storedContracts = new Contract[capacity];
     }
 
+    public Repository(Contract[] contracts) {
+        storedContracts = contracts;
+    }
 
     /**
      * Add one or few contracts to array storedContracts
@@ -61,7 +69,7 @@ public class Repository {
     /**
      * Delete element (contract) from the repository array. This method create a new repository array.
      *
-     * @param old Old repository array
+     * @param old   Old repository array
      * @param index The contract index in the repository array to be deleted
      * @return New repository array without deleted contract
      */
@@ -98,7 +106,68 @@ public class Repository {
         return old;
     }
 
+    /**
+     * Search by a given criterion
+     * это жесткий костыль, но пока так
+     *
+     * @param criterion A given criterion
+     * @param actual    Class of the
+     * @param <T>       Generics
+     * @return Result of searching
+     */
+    public <T extends Contract> Repository search(Predicate<T> criterion, Class<T> actual) {
+        return new Repository(Arrays.stream(storedContracts)
+                .filter(actual::isInstance)
+                .filter(x -> criterion.test((T) x))
+                .toArray(Contract[]::new));
+    }
+
+
+    /**
+     * @param criterion A given criterion
+     * @return New Repository with filtered contracts
+     */
+    public Repository search(Predicate<Contract> criterion) {
+        return new Repository(Arrays.stream(storedContracts)
+                .filter(x -> {
+                        try {
+                            return criterion.test(x);
+                        } catch (NullPointerException e) {
+                            return false;
+                        }
+                })
+                .toArray(Contract[]::new));
+}
+
+
+    public Repository bubbleSort(Comparator<Contract> comp) {
+        return new BubbleSorter().sort(storedContracts, comp);
+    }
+
+    public Repository insertionSort(Comparator<Contract> comp) {
+        return new InsertionSorter().sort(storedContracts, comp);
+    }
+
+    public Contract getByIndex(int index) {
+        if (index >= currentIndex || index < 0)
+            throw new NoSuchElementException("Incorrect index!");
+        return storedContracts[index];
+    }
+
     public Contract[] getStoredContracts() {
         return Arrays.copyOf(storedContracts, currentIndex);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Repository that = (Repository) o;
+        return Arrays.equals(storedContracts, that.storedContracts);
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(storedContracts);
     }
 }
