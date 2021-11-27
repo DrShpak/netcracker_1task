@@ -1,6 +1,5 @@
 package test;
 
-import contracts.Contract;
 import contracts.digitalTV.DigitalTVContract;
 import contracts.digitalTV.TVBundle;
 import contracts.mobileInternet.MobileInternetContract;
@@ -17,7 +16,7 @@ public class InitRepo {
     private static UUID id = UUID.randomUUID();
     private static  Random random = new Random();
 
-    public static Repository InitRepo() {
+    public static Repository InitializeRepo() {
         var repo = new Repository();
         repo.addContracts(
                 DigitalTVContract
@@ -36,7 +35,7 @@ public class InitRepo {
                         .passport(new Passport(2014, 123456))
                         .build()
                 )
-                .tvBundle(TVBundle.TARRIF1)
+                .tvBundle(TVBundle.TARIFF1)
                 .build(),
         MobileInternetContract
                 .builder()

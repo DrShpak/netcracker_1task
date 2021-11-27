@@ -21,7 +21,7 @@ public class Repository {
 
     private Contract[] storedContracts;
     @Getter //like a length
-    private static int currentIndex;
+    private int currentIndex;
 
     public Repository() {
         storedContracts = new Contract[capacity];
@@ -141,11 +141,11 @@ public class Repository {
 
 
     public Repository bubbleSort(Comparator<Contract> comp) {
-        return new BubbleSorter().sort(storedContracts, comp);
+        return new BubbleSorter().sort(storedContracts, comp, currentIndex);
     }
 
     public Repository insertionSort(Comparator<Contract> comp) {
-        return new InsertionSorter().sort(storedContracts, comp);
+        return new InsertionSorter().sort(storedContracts, comp, currentIndex);
     }
 
     public Contract getByIndex(int index) {

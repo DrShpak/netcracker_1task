@@ -1,14 +1,17 @@
 package user;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import com.opencsv.bean.CsvBindByName;
+import lombok.*;
 
-@Getter@Setter
+@Getter
+@Setter
 @EqualsAndHashCode
 @AllArgsConstructor
+@ToString
 public class Passport {
-    private int serialNumber;
+    @CsvBindByName
+    private int series;
+
+    @CsvBindByName
     private int number;
 }

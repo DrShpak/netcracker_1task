@@ -8,8 +8,6 @@ import user.Sex;
 import user.User;
 
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.Random;
 import java.util.UUID;
 import java.util.function.Predicate;
@@ -34,7 +32,7 @@ public class Main {
                     .passport(new Passport(2014, 123456))
                     .build()
             )
-            .tvBundle(TVBundle.TARRIF1)
+            .tvBundle(TVBundle.TARIFF1)
             .build();
 
     private static Contract contract2 = MobileInternetContract
@@ -83,13 +81,11 @@ public class Main {
     public static void main(String[] args) {
 
 
-        var rep = new Repository();
-//        rep.getStoredContracts()[0].
-        rep.addContracts(contract1, contract2, contract3);
-        Predicate<MobileInternetContract> test = x -> x.getMinutes() == 100;
-        System.out.println(rep.search(test, MobileInternetContract.class));
-//        Arrays.stream(rep.bubbleSort(Comparator.comparingInt(x -> ((MobileInternetContract) x).getMinutes())))
-//                .forEach(System.out::println);
-//        System.out.println(rep.search(x -> x.getUser().getName().equals("Егор летов")));
+//        var rep = new Repository();
+//        rep.addContracts(contract1, contract2, contract3);
+//        Predicate<MobileInternetContract> test = x -> x.getMinutes() == 100;
+//        System.out.println(rep.search(test, MobileInternetContract.class));
+
+//        src/main/java/testCodeNoGit/test.csv
     }
 }

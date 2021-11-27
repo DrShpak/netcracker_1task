@@ -4,6 +4,7 @@ import contracts.Contract;
 import contracts.digitalTV.DigitalTVContract;
 import contracts.mobileInternet.MobileInternetContract;
 import contracts.digitalTV.TVBundle;
+import loader.Loader;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import repository.Repository;
@@ -11,6 +12,7 @@ import user.Passport;
 import user.Sex;
 import user.User;
 
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
@@ -40,7 +42,7 @@ public class TestRepository {
                     .passport(new Passport(2014, 123456))
                     .build()
             )
-            .tvBundle(TVBundle.TARRIF1)
+            .tvBundle(TVBundle.TARIFF1)
             .build();
 
     private Contract contract2 = MobileInternetContract
@@ -53,7 +55,7 @@ public class TestRepository {
                     .builder()
                     .id(UUID.randomUUID())
                     .age(20)
-                    .birthDay(LocalDate.of(2000, 5, 16))
+                    .birthDay(LocalDate.of(1946, 10, 10))
                     .name("Эдуард Лимонов")
                     .sex(Sex.MALE)
                     .passport(new Passport(2014, 123456))
@@ -93,10 +95,14 @@ public class TestRepository {
 
 
     @Test
-    public void addContracts() {
-        var actual = rep.getStoredContracts();
+    public void addContracts() throws FileNotFoundException {
+//        var actual = rep.getStoredContracts();
+        var repo = new Repository();
+        Loader.load("src/main/java/testCodeNoGit/test.csv", repo);
+        var actual = repo.getStoredContracts();
         Contract[] expected = {contract1, contract2, contract3};
-        assertArrayEquals(expected, actual);
+//        assertArrayEquals(expected, actual);
+        assertEquals(expected.length, repo.getCurrentIndex());
     }
 
     @Test

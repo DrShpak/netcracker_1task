@@ -1,8 +1,8 @@
 package contracts.digitalTV;
 
 public enum TVBundle {
-    TARRIF1,
-    TARRIF2,
-    TARRIF3,
+    TARIFF1,
+    TARIFF2,
+    TARIFF3,
     TARIFF4
 }

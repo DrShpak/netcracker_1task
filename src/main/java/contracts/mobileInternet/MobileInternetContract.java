@@ -27,7 +27,7 @@ public class MobileInternetContract extends Contract {
 
     @Override
     public String toString() {
-        return "MobileInternetContract. User:{ " + getUser().getName()
+        return "MobileInternetContract. User:{" + getUser().getName()
                 + "}; Contract id: " + getId();
     }
 

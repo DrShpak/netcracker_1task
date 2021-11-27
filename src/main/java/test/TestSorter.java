@@ -17,7 +17,7 @@ public class TestSorter {
 
     @BeforeEach
     public void init() {
-        repository = InitRepo.InitRepo();
+        repository = InitRepo.InitializeRepo();
     }
 
     @Test

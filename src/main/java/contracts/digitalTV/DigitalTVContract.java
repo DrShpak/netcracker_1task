@@ -24,10 +24,7 @@ public class DigitalTVContract extends Contract {
 
     @Override
     public String toString() {
-        return "DigitalTVContract." +
-                "User: {" + getUser().getName() +
-                "}" +
-                "Contract id: " + getId();
+        return "DigitalTV. " + super.toString() + ", TVBundle=" + tvBundle;
     }
 
     @Override

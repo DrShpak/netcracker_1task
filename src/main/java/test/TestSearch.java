@@ -9,7 +9,7 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestSearch {
-    Repository repository = InitRepo.InitRepo();
+    Repository repository = InitRepo.InitializeRepo();
 
     @Test
     public void search() {

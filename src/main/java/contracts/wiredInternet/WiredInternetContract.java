@@ -23,7 +23,7 @@ public class WiredInternetContract extends Contract {
 
     @Override
     public String toString() {
-        return "WiredInternet. User:{ " + getUser().getName()
+        return "WiredInternet. User:{" + getUser().getName()
                 + "}; Contract id: " + getId();
     }
 
