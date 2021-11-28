@@ -1,0 +1,4 @@
+name,sex,birthDay,age,passport,startDate,endDate,pinNumber,type,additionalInfo
+Эдуард Лимонов,MALE,10.10.1946,80,"1111,123456",01.01.2010,27.11.2016,123,mobile,"min=100,sms=50,gb=10"
+Владимир Путин,MALE,21.07.1950,71,"1111,123456",01.01.2010,27.11.2016,245,tv,TARIFF1
+Егор Летов,MALE,02.12.1960,43,"2222,789987",28.11.2016,17.10.2018,666,wired,mbps=100

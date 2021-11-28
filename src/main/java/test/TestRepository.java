@@ -95,14 +95,10 @@ public class TestRepository {
 
 
     @Test
-    public void addContracts() throws FileNotFoundException {
-//        var actual = rep.getStoredContracts();
-        var repo = new Repository();
-        Loader.load("src/main/java/testCodeNoGit/test.csv", repo);
-        var actual = repo.getStoredContracts();
+    public void addContracts() {
+        var actual = rep.getStoredContracts();
         Contract[] expected = {contract1, contract2, contract3};
-//        assertArrayEquals(expected, actual);
-        assertEquals(expected.length, repo.getCurrentIndex());
+        assertArrayEquals(expected, actual);
     }
 
     @Test

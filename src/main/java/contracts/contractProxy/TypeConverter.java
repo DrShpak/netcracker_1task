@@ -16,6 +16,5 @@ public class TypeConverter extends AbstractBeanField {
             case "wired" -> WiredInternetContract.class;
             default -> throw new RuntimeException();
         };
-//        return null;
     }
 }

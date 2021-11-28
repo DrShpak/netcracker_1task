@@ -16,6 +16,9 @@ import java.time.LocalDate;
 import java.util.UUID;
 import java.util.regex.Pattern;
 
+/**
+ * Instance of the class ContractProxy represent the proxy of class Contract
+ */
 @EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
@@ -43,7 +46,11 @@ public class ContractProxy {
     @CsvCustomBindByName(converter = TypeConverter.class)
     private Class<? extends Contract> type;
 
-    //todo чет с исключением придумать
+
+    /**
+     * Turn ContractProxy instance into current Contract instance
+     * @return instance of the class Contract
+     */
     public Contract turnIntoContract() {
         if (MobileInternetContract.class.equals(type)) {
             return getMobileInternetContract();
@@ -51,7 +58,7 @@ public class ContractProxy {
             return getWiredInternetContract();
         } else if (DigitalTVContract.class.equals(type)) {
             return getDigitalTVContract();
-        } else throw new RuntimeException();
+        } else throw new RuntimeException(); //todo чет с исключением придумать
     }
 
     private DigitalTVContract getDigitalTVContract() {

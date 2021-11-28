@@ -13,6 +13,12 @@ public class Loader {
     public Loader() {
     }
 
+    /**
+     * static method for loading data from .csv file
+     * @param path Path to .csv file
+     * @param repo Object of class Repository
+     * @throws FileNotFoundException throws if file is not found
+     */
     public static void load(String path, Repository repo) throws FileNotFoundException {
         var proxies = new CsvToBeanBuilder<ContractProxy>(new FileReader(path))
                 .withType(ContractProxy.class).build().parse();
