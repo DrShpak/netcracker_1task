@@ -3,6 +3,8 @@ package loader;
 import com.opencsv.bean.CsvToBeanBuilder;
 import contracts.contractProxy.ContractProxy;
 import repository.Repository;
+import validator.Status;
+import validator.Validator;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -23,7 +25,10 @@ public class Loader {
         var proxies = new CsvToBeanBuilder<ContractProxy>(new FileReader(path))
                 .withType(ContractProxy.class).build().parse();
 
-        var contracts = proxies.stream().map(ContractProxy::turnIntoContract).collect(Collectors.toList());
+        var contracts = proxies.stream()
+                .map(ContractProxy::turnIntoContract)
+                .filter(x -> new Validator(x).validate().getStatus().equals(Status.OK))
+                .collect(Collectors.toList());
         contracts.forEach(repo::addContracts);
     }
 }

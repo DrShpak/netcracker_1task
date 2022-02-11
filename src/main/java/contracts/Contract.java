@@ -6,7 +6,6 @@ import com.opencsv.bean.CsvRecurse;
 import lombok.*;
 import user.User;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
@@ -15,7 +14,6 @@ import java.util.UUID;
 @Getter
 @AllArgsConstructor
 @ToString
-//@EqualsAndHashCode
 public abstract class Contract {
     private UUID id;
 
@@ -38,6 +36,9 @@ public abstract class Contract {
         this.endDate = endDate;
         this.pinNumber = pinNumber;
         this.user = user;
+    }
+
+    public Contract() {
     }
 
     @Override

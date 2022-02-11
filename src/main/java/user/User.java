@@ -3,10 +3,8 @@ package user;
 import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvCustomBindByName;
 import com.opencsv.bean.CsvDate;
-import com.opencsv.bean.CsvRecurse;
 import lombok.*;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.UUID;
 

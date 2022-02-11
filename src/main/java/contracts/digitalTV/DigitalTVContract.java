@@ -11,7 +11,6 @@ import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
 
-//@EqualsAndHashCode
 public class DigitalTVContract extends Contract {
     @Getter@Setter
     private TVBundle tvBundle;
@@ -20,6 +19,10 @@ public class DigitalTVContract extends Contract {
     public DigitalTVContract(UUID id, LocalDate startDate, LocalDate endDate, int pinNumber, User user, TVBundle tvBundle) {
         super(id, startDate, endDate, pinNumber, user);
         this.tvBundle = tvBundle;
+    }
+
+    public DigitalTVContract() {
+        super();
     }
 
     @Override

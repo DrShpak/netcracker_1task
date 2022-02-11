@@ -108,7 +108,6 @@ public class Repository {
 
     /**
      * Search by a given criterion
-     * это жесткий костыль, но пока так
      *
      * @param criterion A given criterion
      * @param actual    Class of the
