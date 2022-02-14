@@ -17,6 +17,8 @@ public class BubbleSorter implements ISorter {
                 }
             }
         }
-        return new Repository(contracts);
+        var repo = new Repository(contracts);
+        repo.setCurrentIndex(currIndex);
+        return repo;
     }
 }

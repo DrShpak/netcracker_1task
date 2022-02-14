@@ -1,14 +1,15 @@
 package repository;
 
+import annotations.Injectable;
 import contracts.Contract;
 import lombok.Getter;
+import lombok.Setter;
 import sort.BubbleSorter;
+import sort.ISorter;
 import sort.InsertionSorter;
+import user.User;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.NoSuchElementException;
-import java.util.UUID;
+import java.util.*;
 import java.util.function.Predicate;
 
 public class Repository {
@@ -21,7 +22,15 @@ public class Repository {
 
     private Contract[] storedContracts;
     @Getter //like a length
+    @Setter
     private int currentIndex;
+
+    @Getter
+    @Injectable
+    private ISorter sorter;
+
+    @Injectable
+    public ArrayList<ISorter> sorters;
 
     public Repository() {
         storedContracts = new Contract[capacity];
@@ -129,14 +138,18 @@ public class Repository {
     public Repository search(Predicate<Contract> criterion) {
         return new Repository(Arrays.stream(storedContracts)
                 .filter(x -> {
-                        try {
-                            return criterion.test(x);
-                        } catch (NullPointerException e) {
-                            return false;
-                        }
+                    try {
+                        return criterion.test(x);
+                    } catch (NullPointerException e) {
+                        return false;
+                    }
                 })
                 .toArray(Contract[]::new));
-}
+    }
+
+    public Repository sort(Comparator<Contract> comp) {
+        return sorter.sort(storedContracts, comp, currentIndex);
+    }
 
 
     public Repository bubbleSort(Comparator<Contract> comp) {

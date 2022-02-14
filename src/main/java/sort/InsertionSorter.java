@@ -5,9 +5,9 @@ import repository.Repository;
 
 import java.util.Comparator;
 
-public class InsertionSorter implements ISorter {
+public class InsertionSorter /*implements ISorter*/ {
 
-    @Override
+//    @Override
     public Repository sort(Contract[] contracts, Comparator<Contract> comp, int currIndex) {
         for (int i = 1; i < currIndex; i++) {
             Contract key = contracts[i];

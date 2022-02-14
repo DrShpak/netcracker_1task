@@ -1,10 +1,12 @@
 package test;
 
+import annotations.Injector;
 import contracts.Contract;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import repository.Repository;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.NoSuchElementException;
@@ -22,6 +24,11 @@ public class TestSorter {
 
     @Test
     public void testBubbleSort() {
+        try {
+            Injector.inject(repository);
+        } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException | InstantiationException e) {
+            e.printStackTrace();
+        }
         var actual = repository.bubbleSort(Comparator.comparing(Contract::getStartDate)).getStoredContracts();
         var expected = Arrays.stream(repository.getStoredContracts())
                 .sorted(Comparator.comparing(Contract::getStartDate))
